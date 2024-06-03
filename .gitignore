@@ -3,6 +3,7 @@
 
 # Compiled Object files
 *.slo
+*.sln
 *.lo
 *.o
 *.obj
@@ -30,3 +31,12 @@
 *.exe
 *.out
 *.app
+
+*.xml
+
+./ObjectTracking/ObjectTracker/libs/*
+./ObjectTracking/ObjectTracker/out/*
+./ObjectTracking/ObjectTracker/.vs/*
+./ObjectTracking/ObjectTracker/build/*
+
+
