@@ -12,7 +12,7 @@ endif()
 project ("ObjectTracker")
 
 # Add source to this project's executable.
-add_executable (ObjectTracker "ObjectTracker.cpp" "ObjectTracker.h")
+add_executable (ObjectTracker "./src/ObjectTracker.cpp" "./src/VideoTracker.cpp" "./headers/VideoTracker.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ObjectTracker PROPERTY CXX_STANDARD 20)
