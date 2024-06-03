@@ -34,9 +34,9 @@
 
 *.xml
 
-./ObjectTracking/ObjectTracker/libs/
-./ObjectTracking/ObjectTracker/out/
-./ObjectTracking/ObjectTracker/.vs/
-./ObjectTracking/ObjectTracker/build/
+ObjectTracking/ObjectTracker/libs/
+ObjectTracking/ObjectTracker/out/
+ObjectTracking/ObjectTracker/.vs/
+ObjectTracking/ObjectTracker/build/
 
 
