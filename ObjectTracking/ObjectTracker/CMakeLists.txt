@@ -9,14 +9,33 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
+# project name
 project ("ObjectTracker")
 
-# Add source to this project's executable.
-add_executable (ObjectTracker "./src/ObjectTracker.cpp" "./src/VideoTracker.cpp" "./headers/VideoTracker.h")
+# Find OpenCV package
+find_package(OpenCV REQUIRED)
 
+# source files
+set(SOURCE
+	src/ObjectTracker.cpp
+	src/VideoTracker.cpp
+)
+
+# header files
+set(HEADER
+	headers/VideoTracker.h
+) 
+
+# Add source to this project's executable.
+add_executable(ObjectTracker ${SOURCE} ${HEADER})
+
+# set C++ standard
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ObjectTracker PROPERTY CXX_STANDARD 20)
 endif()
 
-# TODO: Add tests and install targets if needed.
-# Add OpenCV here so that it can be done on all platforms
+# Include OpenCV directories
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+# Link OpenCV libraries
+target_link_libraries(ObjectTracker ${OpenCV_LIBS})

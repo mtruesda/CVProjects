@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::string videoPath = "C:\\Users\\Maize\\source\\repos\\CVProjs\\ObjectTracker\\videos\\RaceCar2.mp4";
+    std::string videoPath = "C:\\Users\\Maize\\source\\repos\\CVProjects\\ObjectTracking\\videos\\RaceCar2.mp4";
     cv::VideoCapture cap(videoPath);
 
     if (!cap.isOpened()) {
