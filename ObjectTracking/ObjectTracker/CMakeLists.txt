@@ -34,8 +34,19 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ObjectTracker PROPERTY CXX_STANDARD 20)
 endif()
 
+# set build type because can
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  message(STATUS "Setting build type to 'RelWithDebInfo' as none was specified.")
+  set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build." FORCE)
+  # Set the possible values of build type for cmake-gui
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+
 # Include OpenCV directories
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 # Link OpenCV libraries
 target_link_libraries(ObjectTracker ${OpenCV_LIBS})
+
+# set startup project as my project
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ObjectTracker)
