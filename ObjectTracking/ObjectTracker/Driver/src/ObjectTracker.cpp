@@ -2,7 +2,7 @@
 #include <iostream>
 #include <filesystem>
 
-//#include "./headers/VideoTracker.h"
+#include "VideoTracker.h"
 
 int main()
 {
