@@ -1,3 +1,5 @@
+#!/bin/bash
+
 CURRENT_DIR=$(basename $(pwd))
 echo $CURRENT_DIR
 
