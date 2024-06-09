@@ -14,7 +14,7 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
 endif()
 
 # Include Tracker library headers
-include_directories(${CMAKE_SOURCE_DIR}/Tracker/headers)
+target_include_directories(Driver PRIVATE ${CMAKE_SOURCE_DIR}/Tracker/headers)
 
 # Link libraries
-target_link_libraries(Driver Tracker) # opencv inherited from tracker
+target_link_libraries(Driver PRIVATE Tracker) # opencv inherited from tracker
