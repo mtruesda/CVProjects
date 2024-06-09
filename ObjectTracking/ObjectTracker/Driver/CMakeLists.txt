@@ -17,4 +17,4 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/Tracker/headers)
 
 # Link libraries
-target_link_libraries(Driver Tracker) # this might be unnecessary later
+target_link_libraries(Driver Tracker) # opencv inherited from tracker
