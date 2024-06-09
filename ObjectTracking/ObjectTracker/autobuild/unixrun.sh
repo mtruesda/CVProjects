@@ -6,4 +6,4 @@ if [$CURRENT_DIR == "autobuild"]; then
 fi
 
 echo "Running"
-./build/ObjectTracker
+./build/Driver/Driver
