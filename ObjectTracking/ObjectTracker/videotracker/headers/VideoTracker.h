@@ -6,7 +6,10 @@
 
 class VideoTracker {
 public:
+	// Tracker Constructor
 	VideoTracker();
+
+	// Processes the video frame while tracking
 	void processFrame(cv::Mat& frame);
 };
 

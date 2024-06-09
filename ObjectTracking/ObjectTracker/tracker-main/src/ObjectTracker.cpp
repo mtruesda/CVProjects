@@ -7,6 +7,5 @@
 int main()
 {
     DefaultTracker defaultTracker = DefaultTracker(); // debugging
-
     defaultTracker.start();
 }

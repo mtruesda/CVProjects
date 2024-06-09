@@ -3,6 +3,7 @@
 # Source files
 set(TRACKER_SOURCE_FILES
     src/VideoTracker.cpp
+    src/ColorTracker.cpp
     src/BoxTracker.cpp
     src/Default.cpp
 )
@@ -10,6 +11,7 @@ set(TRACKER_SOURCE_FILES
 # Header files
 set(TRACKER_HEADER_FILES
     headers/VideoTracker.h
+    headers/ColorTracker.h
     headers/BoxTracker.h
 )
 
