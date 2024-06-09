@@ -1,6 +1,8 @@
-# ObjectTracker
+# ObjectTrackerCpp
 
 ## Objective
+
+Perform object tracking of different varieties on a given video. Videos can be set within `./tracker-main/config.json`
 
 ## Building ObjectTracker
 
@@ -35,7 +37,7 @@
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/ObjectTracker.git
+    git clone https://github.com/mtruesda/ObjectTracker.git
     cd ObjectTracker
     ```
 
@@ -59,5 +61,3 @@
     ```sh
     ./ObjectTracker
     ```
-
-## Included Files
