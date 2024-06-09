@@ -20,6 +20,7 @@
 
 1. Install OpenCV using Homebrew:
     ```sh
+    brew install ffmpeg@6
     brew install opencv
     ```
 
