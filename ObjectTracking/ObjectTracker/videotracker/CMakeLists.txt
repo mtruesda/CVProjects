@@ -3,11 +3,14 @@
 # Source files
 set(TRACKER_SOURCE_FILES
     src/VideoTracker.cpp
+    src/BoxTracker.cpp
+    src/Default.cpp
 )
 
 # Header files
 set(TRACKER_HEADER_FILES
     headers/VideoTracker.h
+    headers/BoxTracker.h
 )
 
 # Add library or executable

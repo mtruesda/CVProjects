@@ -6,9 +6,7 @@
 
 class VideoTracker {
 public:
-	// Constructor
 	VideoTracker();
-
 	void processFrame(cv::Mat& frame);
 };
 
@@ -20,6 +18,8 @@ class ColorTracker : public VideoTracker {
 
 // Tracks the area contained within a region
 class BoxTracker : public VideoTracker {
+public:
+	
 protected:
 	struct Impl;
 	Impl* m_impl;
@@ -27,7 +27,14 @@ protected:
 
 // Tracks Edges
 class EdgeTracker : public VideoTracker {
+	
+};
 
+// default class to ensure that opencv library is working and obtaining video
+class DefaultTracker {
+public:
+    DefaultTracker();
+    void start();
 };
 
 #endif
