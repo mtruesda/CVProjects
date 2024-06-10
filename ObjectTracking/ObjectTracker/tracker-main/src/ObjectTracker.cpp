@@ -4,8 +4,10 @@
 
 #include "VideoTracker.h"
 
+namespace vt = VideoTracker;
+
 int main()
 {
-    DefaultTracker defaultTracker = DefaultTracker(); // debugging
-    defaultTracker.start();
+    std::unique_ptr<vt::Tracker> tracker = std::make_unique<vt::DefaultTracker>();
+    tracker->start(); // used with default -- debugging
 }

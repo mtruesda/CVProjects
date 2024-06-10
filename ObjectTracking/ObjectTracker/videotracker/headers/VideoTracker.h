@@ -4,40 +4,46 @@
 #ifndef VIDEOTRACKER_H
 #define VIDEOTRACKER_H
 
-class VideoTracker {
-public:
-	// Tracker Constructor
-	VideoTracker();
+namespace VideoTracker {
 
-	// Processes the video frame while tracking
-	void processFrame(cv::Mat& frame);
-};
+	class Tracker {
+	public:
+		virtual ~Tracker() {}
 
-// Tracks based on color
-class ColorTracker : public VideoTracker {
+		virtual void processImage(cv::Mat& img) = 0;
+		virtual void start() = 0;
+	};
 
-};
+	// Tracks based on color
+	class ColorTracker : public Tracker {
+	public:
+		ColorTracker();
+		~ColorTracker();
+
+		void processImage(cv::Mat& img) override;
+		void start() override;
+	protected:
+		struct Impl;
+		std::unique_ptr<Impl> m_impl;
+	};
 
 
-// Tracks the area contained within a region
-class BoxTracker : public VideoTracker {
-public:
-	
-protected:
-	struct Impl;
-	Impl* m_impl;
-};
+	// Tracks the area contained within a region
+	class BoxTracker {
 
-// Tracks Edges
-class EdgeTracker : public VideoTracker {
-	
-};
+	};
 
-// default class to ensure that opencv library is working and obtaining video
-class DefaultTracker {
-public:
-    DefaultTracker();
-    void start();
-};
+	// default class to ensure that opencv library is working and obtaining video
+	class DefaultTracker : public Tracker {
+	public:
+		DefaultTracker() = default;
+		~DefaultTracker() = default;
+
+		void processImage(cv::Mat& img) override;
+
+		void start() override;
+	};
+
+}
 
 #endif
