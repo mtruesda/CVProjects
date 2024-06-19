@@ -14,6 +14,7 @@ project(ObjectTracker)
 
 # Find OpenCV package
 find_package(OpenCV REQUIRED)
+find_package(nlohmann_json 3.2.0 REQUIRED)
 
 # Include OpenCV directories
 include_directories(${OpenCV_INCLUDE_DIRS})
