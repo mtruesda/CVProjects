@@ -14,13 +14,13 @@ void createTestImages() {
 
     Mat img2 = img1.clone();
 
-    // Draw a small black square at position (50, 50) on img1
+    // draw point at 50, 50
     rectangle(img1, Point(50, 50), Point(60, 60), Scalar(0, 0, 0), -1);
 
-    // Draw a small black square at position (55, 50) on img2
-    rectangle(img2, Point(55, 50), Point(65, 60), Scalar(0, 0, 0), -1);
+    // draw point at 55, 50
+    rectangle(img2, Point(75, 50), Point(85, 60), Scalar(0, 0, 0), -1);
 
-    // Save the images
+    // write them to vars
     imwrite("image1.jpg", img1);
     imwrite("image2.jpg", img2);
 }
