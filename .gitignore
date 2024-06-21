@@ -32,11 +32,20 @@
 *.out
 *.app
 
+# Storage
 *.xml
+*.json
 
+# Build related
 */*/libs/
 */*/out/
 */*/.vs/
 */*/build/
 
 
+# Not sure what these were
+.DS_Store
+*/.DS_Store/
+*/*/.DS_Store/
+*/.vscode/
+*/*/.vscode
