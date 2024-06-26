@@ -72,8 +72,23 @@ void showContourFocus(Mat img1, Mat img2, Mat result, vector<Point> contour) {
     
     Mat focus1, focus2, croppedResult;
     Rect boundingBox = boundingRect(contour); // obtain contour information
-    // TODO: clone into focus images
-    // TODO: trim the photos down to size
+    
+    // clone images for changes
+    focus1 = img1.clone();
+    focus2 = img2.clone();
+    croppedResult = result.clone();
+    
+    // obtain crop info
+    int x_start = boundingBox.tl().x;
+    int x_end = boundingBox.tl().x + boundingBox.width;
+    int y_start = boundingBox.br().y;
+    int y_end = boundingBox.br().y + boundingBox.height;
+    Rect cropRect(x_start, y_start, x_end - x_start, y_end - y_start);
+
+    // crop them
+    focus1 = focus1(cropRect);
+    focus2 = focus2(cropRect);
+    croppedResult = croppedResult(cropRect);
 
     // Show the images with the focused contour
     imshow("Focused Image 1", focus1);
@@ -81,7 +96,7 @@ void showContourFocus(Mat img1, Mat img2, Mat result, vector<Point> contour) {
     imshow("Focused Differences", croppedResult);
 
     // display information about the contour
-    cout << "Contour #" << i + 1 << ": " << endl;
+    cout << "Displaying Contour info" << endl;
     cout << "  Location: " << boundingBox.tl() << " - " << boundingBox.br() << endl;
     cout << "  Size: " << boundingBox.width << " x " << boundingBox.height << endl;
     waitKey(0); // wait until user is done
@@ -161,8 +176,8 @@ int main() {
     imshow("Image2", img2);
 
     // Show specific contours
-    // showContourFocus(img1, img2, result, contours, 0);
-    // showContourFocus(img1, img2, result, contours, 1);
+    showContourFocus(img1, img2, result, contours[0]);
+    showContourFocus(img1, img2, result, contours[1]);
 
     waitKey(0); // wait until user prompts ending
 
