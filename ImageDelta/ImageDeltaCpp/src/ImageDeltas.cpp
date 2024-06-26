@@ -68,36 +68,29 @@ vector<vector<Point>> findAndFilterContours(const Mat& threshold, double minArea
 
 // Function to show specific contour focus
 //TODO: Fix
-void showContourFocus(Mat img1, Mat img2, Mat result, vector<vector<Point>>& contours, int contourIndex) {
-    if (contourIndex < 0 || contourIndex >= contours.size()) {
-        cout << "Invalid contour index!" << endl;
-        return;
-    }
-
-    // Draw only the specified contour
-    Mat focus1 = img1.clone();
-    Mat focus2 = img2.clone();
-    Mat focusResult = Mat::zeros(result.size(), result.type());
-
-    // Draw the contour on the original images with bounding boxes
-    drawContours(focus1, contours, contourIndex, Scalar(0, 0, 255), 2, LINE_8);
-    drawContours(focus2, contours, contourIndex, Scalar(0, 0, 255), 2, LINE_8);
+void showContourFocus(Mat img1, Mat img2, Mat result, vector<Point> contour) {
     
-    Rect boundingBox = boundingRect(contours[contourIndex]);
-    rectangle(focus1, boundingBox.tl(), boundingBox.br(), Scalar(0, 255, 0), 2);
-    rectangle(focus2, boundingBox.tl(), boundingBox.br(), Scalar(0, 255, 0), 2);
-
-    // Copy the contour area to the result image
-    result(boundingBox).copyTo(focusResult(boundingBox));
-
-    // Crop the result image to the bounding box
-    Mat croppedResult = focusResult(boundingBox);
+    Mat focus1, focus2, croppedResult;
+    Rect boundingBox = boundingRect(contour); // obtain contour information
+    // TODO: clone into focus images
+    // TODO: trim the photos down to size
 
     // Show the images with the focused contour
     imshow("Focused Image 1", focus1);
     imshow("Focused Image 2", focus2);
     imshow("Focused Differences", croppedResult);
-    waitKey(0);
+
+    // display information about the contour
+    cout << "Contour #" << i + 1 << ": " << endl;
+    cout << "  Location: " << boundingBox.tl() << " - " << boundingBox.br() << endl;
+    cout << "  Size: " << boundingBox.width << " x " << boundingBox.height << endl;
+    waitKey(0); // wait until user is done
+}
+
+// This will return a distance from the contour to the camera
+// TODO: Implement
+int contourDistance(Mat img, vector<Point> contour) {
+    return 0;
 }
 
 int main() {
