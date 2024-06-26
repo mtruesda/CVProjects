@@ -3,7 +3,6 @@
 #include <opencv2/opencv.hpp>
 #include <cfloat> // For DBL_MAX
 
-
 #include "../headers/ImageDeltas.h"
 
 using namespace cv;
