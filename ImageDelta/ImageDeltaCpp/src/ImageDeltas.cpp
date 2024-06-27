@@ -27,15 +27,6 @@ void createTestImages() {
     imwrite("images/generated/image2.jpg", img2);
 }
 
-// Function to find contours and return them -- 
-//TODO: May want hierarchy included
-vector<vector<Point>> findContoursInImage(const Mat& threshold) {
-    vector<vector<Point>> contours;
-    vector<Vec4i> hierarchy;
-    findContours(threshold, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
-    return contours;
-}
-
 // Function to calculate distances between contours
 //TODO: May want to specify which contours we're measuring between
 vector<double> calculateDistances(const vector<vector<Point>>& contours) {
@@ -50,8 +41,7 @@ vector<double> calculateDistances(const vector<vector<Point>>& contours) {
 }
 
 // Function to find and filter contours based on area
-//TODO: 
-vector<vector<Point>> findAndFilterContours(const Mat& threshold, double minArea, double maxArea = DBL_MAX) {
+vector<vector<Point>> findContours(const Mat& threshold, double minArea = 0, double maxArea = DBL_MAX) {
     vector<vector<Point>> contours;
     vector<Vec4i> hierarchy;
     findContours(threshold, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
@@ -66,24 +56,37 @@ vector<vector<Point>> findAndFilterContours(const Mat& threshold, double minArea
     return filteredContours;
 }
 
-// Function to show specific contour focus
-//TODO: Fix
+// Function to show specific contours in focus
 void showContourFocus(Mat img1, Mat img2, Mat result, vector<Point> contour) {
-    
+    if (img1.empty() || img2.empty() || result.empty()) {
+        cout << "One of the input images is empty." << endl;
+        return;
+    }
+
     Mat focus1, focus2, croppedResult;
     Rect boundingBox = boundingRect(contour); // obtain contour information
-    
+
     // clone images for changes
     focus1 = img1.clone();
     focus2 = img2.clone();
     croppedResult = result.clone();
-    
+
     // obtain crop info
     int x_start = boundingBox.tl().x;
-    int x_end = boundingBox.tl().x + boundingBox.width;
-    int y_start = boundingBox.br().y;
-    int y_end = boundingBox.br().y + boundingBox.height;
-    Rect cropRect(x_start, y_start, x_end - x_start, y_end - y_start);
+    int y_start = boundingBox.tl().y; // corrected to boundingBox.tl().y
+    int width = boundingBox.width;
+    int height = boundingBox.height;
+
+    cout << "Debug info:\nx_start: " << x_start <<
+        "\ny_start: " << y_start << "\nwidth: " << width << "\nheight: " << height << endl;
+
+    // Check if the crop rectangle is within the image bounds
+    if (x_start < 0 || y_start < 0 || x_start + width > img1.cols || y_start + height > img1.rows) {
+        cout << "Crop rectangle is out of bounds." << endl;
+        return;
+    }
+
+    Rect cropRect(x_start, y_start, width, height);
 
     // crop them
     focus1 = focus1(cropRect);
@@ -98,7 +101,7 @@ void showContourFocus(Mat img1, Mat img2, Mat result, vector<Point> contour) {
     // display information about the contour
     cout << "Displaying Contour info" << endl;
     cout << "  Location: " << boundingBox.tl() << " - " << boundingBox.br() << endl;
-    cout << "  Size: " << boundingBox.width << " x " << boundingBox.height << endl;
+    cout << "  Size: " << width << " x " << height << endl;
     waitKey(0); // wait until user is done
 }
 
@@ -142,8 +145,8 @@ int main() {
     }
 
     // Find contours
-    vector<vector<Point>> contours = findContoursInImage(thresh);
-
+    vector<vector<Point>> contours = findContours(thresh, 500); // specify min size
+    
     // Draw contours and extract data
     Mat result = img1.clone();
     for (size_t i = 0; i < contours.size(); i++) {
