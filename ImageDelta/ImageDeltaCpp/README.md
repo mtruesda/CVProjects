@@ -11,20 +11,11 @@ returns: None
 
 Generates two test photos that can be used for comparison. The photos will include a dot that is placed differently in each image
 
-### findContoursInImage(const Mat& threshold)
-
-Arguments:
-    - sconst Mat& threshold: The threshold to extract contours from
-Returns: 
-    - vector<vector<Point>> contours: A vector of contours from the threshold produced from the two images
-
-Creates a list of contours from the difference and thresholding of the two images
-
 ### calculateDistances()
 
 Still in development
 
-### findAndFilterContours(const Mat& threshold, double minArea, double maxArea = DBL_MAX)
+### vector<vector<Point>> findContours(const Mat& threshold, double minArea = 0, double maxArea = DBL_MAX)
 
 Arguments:
     - const Mat& threshold: Threshold image
@@ -35,7 +26,7 @@ Returns:
 
 Filters the contour list to meet area constraints
 
-### showContourFocus(Mat img1, Mat img2, Mat result, vector<Point> contour)
+### void showContourFocus(Mat img1, Mat img2, Mat result, vector<Point> contour)
 
 Arguments:
     - Mat img1: image 1
@@ -43,6 +34,15 @@ Arguments:
     - Mat result: original result
     - vector<Point> contour: contour to be displayed
 Returns: None
+
+### int contourDistance(Mat img, vector<Point> contour)
+
+Arguments:
+    - Mat img: the image containing the contour
+    - vector<Point> contour: the contour in question
+Returns:
+    - distance in pixels from the camera
+
 
 ## Included Images
 

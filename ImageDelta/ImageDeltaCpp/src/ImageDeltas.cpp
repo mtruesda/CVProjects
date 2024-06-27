@@ -145,7 +145,7 @@ int main() {
     }
 
     // Find contours
-    vector<vector<Point>> contours = findContours(thresh, 500); // specify min size
+    vector<vector<Point>> contours = findContours(thresh, 15000); // specify min size
     
     // Draw contours and extract data
     Mat result = img1.clone();
